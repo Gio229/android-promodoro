@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:andoid="http://schemas.android.com/apk/res/android"
+    andoid:layout_width="match_parent"
+    andoid:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        andoid:id="@+id/tafText"
+        andoid:layout_width="wrap_content"
+        andoid:layout_height="wrap_content"
+        andoid:text="Mes activités"
+        andoid:textColor="@color/black"
+        andoid:textStyle="bold"
+        andoid:layout_marginStart="16dp"
+        andoid:layout_marginTop="16dp"
+        andoid:layout_marginBottom="16dp"
+        andoid:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        andoid:id="@+id/tafRecyclerView"
+        andoid:layout_width="match_parent"
+        andoid:layout_height="wrap_content"
+        andoid:layout_below="@+id/tafText"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        andoid:nestedScrollingEnabled="true"/>
+    
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        andoid:id="@+id/toAdd"
+        andoid:layout_width="wrap_content"
+        andoid:layout_height="wrap_content"
+        andoid:layout_alignParentBottom="true"
+        andoid:layout_alignParentEnd="true"
+        andoid:layout_margin="32dp"
+        andoid:backgroundTint="@color/my_blue"
+        andoid:src="@drawable/ic_baseline_add"/>
+
+
+</RelativeLayout>
