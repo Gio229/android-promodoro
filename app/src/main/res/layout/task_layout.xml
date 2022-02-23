@@ -1,0 +1,80 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <CheckBox
+            android:id="@+id/myTaskCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/my_blue"
+            android:paddingStart="8dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_toEndOf="@+id/myTaskCheckBox"
+            android:layout_marginLeft="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/taskName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Ceci est le nom de ma tâche"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/my_blue"/>
+
+            <TextView
+                android:id="@+id/myTaskTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Task time :               "
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:layout_marginStart="40dp"/>
+            <TextView
+                android:id="@+id/myTaskTimeSpent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Time spent :            "
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:layout_marginStart="40dp"/>
+            <TextView
+                android:id="@+id/myTaskTimeLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Remaining time :    "
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:layout_marginStart="40dp"/>
+
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
