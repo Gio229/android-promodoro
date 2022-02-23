@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <EditText
+        android:id="@+id/newTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:background="@null"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:hint="Nouvelle tâche*"/>
+
+    <EditText
+        android:id="@+id/newTaskTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newTaskName"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        android:hint="Task time"
+        android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    <EditText
+        android:id="@+id/newTaskTimeSpent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:layout_below="@+id/newTaskTime"
+        android:background="@null"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:hint="Time Spent"/>
+    <EditText
+        android:id="@+id/newTaskTimeLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:layout_below="@+id/newTaskTimeSpent"
+        android:background="@null"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:hint="Remaining time"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sauvegarder"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:layout_below="@+id/newTaskTimeLeft"
+        android:layout_alignParentEnd="true"
+        android:background="@color/my_blue"
+        android:textColor="@android:color/white"/>
+
+</RelativeLayout>

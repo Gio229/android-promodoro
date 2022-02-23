@@ -13,12 +13,22 @@
         android:padding="8dp">
 
         <CheckBox
-            android:id="@+id/bb"
+            android:id="@+id/myTafCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This is an simple activity"
             android:paddingStart="8dp"
             android:buttonTint="@color/my_blue"/>
+
+        <TextView
+            android:id="@+id/myTafText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="This is an simple activity"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:paddingStart="8dp"
+            android:layout_marginStart="60dp"/>
     </RelativeLayout>
 
 
