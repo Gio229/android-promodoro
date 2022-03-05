@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.promodoro.Adapter.TafAdapter;
 import com.example.promodoro.Model.JsonDataMaker;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView tafRecyclerView;
     private TafAdapter tafAdapter;
     private FloatingActionButton addButton;
+    private TextView titre;
 
     private List<TafModel> tafList;
 
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //tafList = new ArrayList<>();
+        titre = findViewById(R.id.tafText);
+
 
         addButton = findViewById(R.id.toAdd);
 
@@ -69,5 +73,35 @@ public class MainActivity extends AppCompatActivity {
 
         tafAdapter.setTaf(tafList);*/
 
+        //titre.setText(String.valueOf(dataManager.writeJson("")));
+
+        titre.setText(String.valueOf(dataManager.writeJson("[{\n" +
+                "    \"id\": 1,\n" +
+                "    \"tafName\": \"Un autre\",\n" +
+                "    \"status\": 0,\n" +
+                "    \"tasks\": [\n" +
+                "      {\n" +
+                "        \"id\": 1,\n" +
+                "        \"taskName\": \"PCT cours\",\n" +
+                "        \"status\": 0,\n" +
+                "        \"taskTime\": \"2h\",\n" +
+                "        \"taskTimeSpent\": \"1h30\",\n" +
+                "        \"taskTimeLeft\": \"30min\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"id\": 2,\n" +
+                "        \"taskName\": \"DTI cours\",\n" +
+                "        \"status\": 0,\n" +
+                "        \"taskTime\": \"2h\",\n" +
+                "        \"taskTimeSpent\": \"1h30\",\n" +
+                "        \"taskTimeLeft\": \"30min\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }]")));
+        //titre.setText(dataManager.test());
+
+        tafList = dataManager.getJsonData();
+        titre.setText(dataManager.test());
     }
+
 }

@@ -9,7 +9,6 @@
         andoid:layout_width="wrap_content"
         andoid:layout_height="wrap_content"
         andoid:text="Mes activités"
-        andoid:textColor="@color/black"
         andoid:textStyle="bold"
         andoid:layout_marginStart="16dp"
         andoid:layout_marginTop="16dp"
