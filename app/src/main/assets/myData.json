@@ -11,14 +11,6 @@
         "taskTime": "2h",
         "taskTimeSpent": "1h30",
         "taskTimeLeft": "30min"
-      },
-      {
-        "id": 2,
-        "taskName": "SVT cours",
-        "status": 0,
-        "taskTime": "2h",
-        "taskTimeSpent": "1h30",
-        "taskTimeLeft": "30min"
       }
     ]
   }

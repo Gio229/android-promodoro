@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.promodoro.Adapter.TafAdapter;
 import com.example.promodoro.Model.JsonDataMaker;
@@ -18,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,9 +28,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String FILENAME = "myData.txt";
+
+    private static final String FOLDERNAME = "dataPromodoro";
+
     private RecyclerView tafRecyclerView;
     private TafAdapter tafAdapter;
     private FloatingActionButton addButton;
+    private TextView titre;
 
     private List<TafModel> tafList;
 
@@ -38,11 +45,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        //tafList = new ArrayList<>();
+        //tafList = new ArrayList<>(); 
+        titre = findViewById(R.id.tafText);
+
 
         addButton = findViewById(R.id.toAdd);
 
         JsonDataMaker dataManager = new JsonDataMaker(this);
+
+        dataManager.writeJson("[\n" +
+                "  {\n" +
+                "    \"id\": 1,\n" +
+                "    \"tafName\": \"Examen blanc du néant\",\n" +
+                "    \"status\": 0,\n" +
+                "    \"tasks\": [\n" +
+                "      {\n" +
+                "        \"id\": 1,\n" +
+                "        \"taskName\": \"Autres cours\",\n" +
+                "        \"status\": 0,\n" +
+                "        \"taskTime\": \"2h\",\n" +
+                "        \"taskTimeSpent\": \"1h30\",\n" +
+                "        \"taskTimeLeft\": \"30min\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]");
         tafList = dataManager.getJsonData();
 
 
@@ -53,21 +80,80 @@ public class MainActivity extends AppCompatActivity {
         tafAdapter = new TafAdapter(this);
         tafRecyclerView.setAdapter(tafAdapter);
 
-        /*TafModel taf = new TafModel();
-        taf.setTafName("Ceci est ma première activité");
-        taf.setId(1);
-        taf.setStatus(0);
-
-        TafModel taff = new TafModel();
-        taff.setTafName("Ceci est ma première activité");
-        taff.setId(2);
-        taff.setStatus(1);
+        addButton = findViewById(R.id.toAdd);
 
 
-        tafList.add(taf);
-        tafList.add(taff);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        tafAdapter.setTaf(tafList);*/
+            }
+        });
+
+        //titre.setText(dataManager.getTextFromStorage());
 
     }
+
+    // --------------------
+
+// ACTIONS
+
+// --------------------
+
+ /*   private void save(String data){
+
+            this.writeOnInternalStorage(data);
+
+    }
+
+// ----------------------------------
+
+// UTILS - STORAGE
+
+// ----------------------------------
+
+    private String readFromStorage(){
+
+
+
+// 2 - Read from internal storage
+
+// INTERNAL
+
+            File directory;
+
+// Cache
+
+                //directory = getCacheDir();
+
+
+// Normal
+
+                directory = getFilesDir();
+
+
+            return JsonDataMaker.getTextFromStorage(directory, this, FILENAME, FOLDERNAME);
+
+
+
+    }
+
+// 1 - Write on internal storage
+
+    private void writeOnInternalStorage(String data) {
+
+        File directory;
+
+
+            //directory = getCacheDir();
+
+
+
+            directory = getFilesDir();
+
+
+        JsonDataMaker.setTextInStorage(directory, this, FILENAME, FOLDERNAME, data);
+
+    }*/
+
 }
