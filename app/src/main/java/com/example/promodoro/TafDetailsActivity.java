@@ -1,10 +1,13 @@
 package com.example.promodoro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.promodoro.Adapter.TafAdapter;
@@ -12,6 +15,7 @@ import com.example.promodoro.Adapter.TaskAdapter;
 import com.example.promodoro.Model.JsonDataMaker;
 import com.example.promodoro.Model.TafModel;
 import com.example.promodoro.Model.TaskModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,7 @@ public class TafDetailsActivity extends AppCompatActivity {
     private List<TaskModel> taskList;
     private TextView activityName;
     private TafModel myActivity;
+    private FloatingActionButton addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +51,17 @@ public class TafDetailsActivity extends AppCompatActivity {
         taskAdapter = new TaskAdapter(this);
         taskRecyclerView.setAdapter(taskAdapter);
 
-        /*TaskModel task = new TaskModel();
-        task.setTaskName("Ceci est ma première tâche");
-        task.setTaskTime("2h");
-        task.setTaskTimeSpent("00min");
-        task.setTaskTimeLeft("00min");
-        task.setId(1);
-        task.setStatus(0);
+        addButton = findViewById(R.id.toAddTask);
 
 
-        taskList.add(task);
-        taskList.add(task);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TafDetailsActivity.this, AddNewTaskActivity.class);
+                TafDetailsActivity.this.startActivity(intent);
+            }
+        });
 
-        taskAdapter.setTask(taskList);*/
+
     }
 }

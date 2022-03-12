@@ -24,7 +24,7 @@
         andoid:nestedScrollingEnabled="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        andoid:id="@+id/toAdd"
+        andoid:id="@+id/toAddTask"
         andoid:layout_width="wrap_content"
         andoid:layout_height="wrap_content"
         andoid:layout_alignParentBottom="true"

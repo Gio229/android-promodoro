@@ -1,6 +1,8 @@
 package com.example.promodoro.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +11,14 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.promodoro.AddNewTaf;
 import com.example.promodoro.MainActivity;
 import com.example.promodoro.Model.JsonDataMaker;
 import com.example.promodoro.Model.TafModel;
 import com.example.promodoro.Model.TaskModel;
 import com.example.promodoro.R;
 import com.example.promodoro.TafDetailsActivity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -22,12 +26,13 @@ public class TafAdapter extends RecyclerView.Adapter<TafAdapter.ViewHolder> {
 
     private List<TafModel> tafList;
     private final MainActivity activity;
+    private JsonDataMaker dataManager;
 
     public TafAdapter(MainActivity activity){
 
         this.activity = activity;
 
-        JsonDataMaker dataManager = new JsonDataMaker(activity);
+        dataManager = new JsonDataMaker(activity);
         tafList = dataManager.getJsonData();
 
     }
@@ -64,9 +69,43 @@ public class TafAdapter extends RecyclerView.Adapter<TafAdapter.ViewHolder> {
         return n != 0;
     }
 
-    public void setTaf(List<TafModel> tafList){
+    public void setTafs(List<TafModel> tafList){
         this.tafList = tafList;
         notifyDataSetChanged();
+    }
+
+    public Context getContext(){return activity;}
+
+    public void deleteItem(int position){
+
+        //TafModel item = tafList.get(position);
+        //on supprime
+
+        tafList.remove(position);
+
+        Gson gson = new Gson();
+
+        dataManager.writeJson(gson.toJson(tafList));
+
+        notifyDataSetChanged();
+
+        notifyItemRemoved(position);
+
+    }
+
+    public void editItem(int position){
+
+        TafModel item = tafList.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", position);
+        bundle.putString("tafName", item.getTafName());
+        AddNewTaf fragment = new AddNewTaf(activity);
+        fragment.setArguments(bundle);
+        fragment.show(activity.getSupportFragmentManager(), AddNewTaf.TAG);
+
+        notifyDataSetChanged();
+
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -78,7 +117,5 @@ public class TafAdapter extends RecyclerView.Adapter<TafAdapter.ViewHolder> {
             myTafCheckBox = view.findViewById(R.id.myTafCheckBox);
         }
     }
-
-
 
 }
