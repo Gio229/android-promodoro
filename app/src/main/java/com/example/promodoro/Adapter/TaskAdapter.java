@@ -41,6 +41,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         if(taskList.size() != 0){
             TaskModel item = taskList.get(position);
             holder.myTaskName.setText(item.getTaskName());
+            /*holder.myTaskTime.setText(item.getTaskTime());
+            holder.myTaskTimeSpent.setText(item.getTaskTimeSpent());
+            holder.myTaskTimeLeft.setText(item.getTaskTimeLeft());*/
             holder.myTaskCheckBox.setChecked(toBolean(item.getStatus()));
         }
 

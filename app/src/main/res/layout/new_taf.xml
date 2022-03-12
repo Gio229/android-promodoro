@@ -7,19 +7,39 @@
         android:id="@+id/newTafText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:background="@null"
         android:hint="Nouveau"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_below="@+id/newTafText"
+        >
+
+
+    </com.google.android.material.textfield.TextInputEditText>
+    
+
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/newTafButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="Sauvegarder"
         android:textAllCaps="false"
         android:textSize="16dp"
-        android:layout_below="@+id/newTafText"
+        android:layout_below="@+id/container"
         android:layout_alignParentEnd="true"
         android:background="@color/my_blue"
-        android:textColor="@android:color/white"/>
+        android:textColor="@color/my_gray"/>
 
 </RelativeLayout>

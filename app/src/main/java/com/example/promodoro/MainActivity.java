@@ -1,13 +1,16 @@
 package com.example.promodoro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.promodoro.Adapter.TafAdapter;
 import com.example.promodoro.Model.JsonDataMaker;
@@ -24,9 +27,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogCloseListener {
 
     private static final String FILENAME = "myData.txt";
 
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView titre;
 
     private List<TafModel> tafList;
+    private JsonDataMaker dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +55,9 @@ public class MainActivity extends AppCompatActivity {
         titre = findViewById(R.id.tafText);
 
 
-        addButton = findViewById(R.id.toAdd);
+        dataManager = new JsonDataMaker(this);
 
-        JsonDataMaker dataManager = new JsonDataMaker(this);
 
-        dataManager.writeJson("[\n" +
-                "  {\n" +
-                "    \"id\": 1,\n" +
-                "    \"tafName\": \"Examen blanc du néant\",\n" +
-                "    \"status\": 0,\n" +
-                "    \"tasks\": [\n" +
-                "      {\n" +
-                "        \"id\": 1,\n" +
-                "        \"taskName\": \"Autres cours\",\n" +
-                "        \"status\": 0,\n" +
-                "        \"taskTime\": \"2h\",\n" +
-                "        \"taskTimeSpent\": \"1h30\",\n" +
-                "        \"taskTimeLeft\": \"30min\"\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  }\n" +
-                "]");
         tafList = dataManager.getJsonData();
 
 
@@ -83,77 +71,40 @@ public class MainActivity extends AppCompatActivity {
         addButton = findViewById(R.id.toAdd);
 
 
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new RecyclerItemTouchHelper(tafAdapter));
+
+        itemTouchHelper.attachToRecyclerView(tafRecyclerView);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AddNewTaf.newInstance(MainActivity.this).show(getSupportFragmentManager(), AddNewTaf.TAG );
             }
         });
+
+        /*addButton.setOnLongClickListener(new View.OnLongClickListener() {
+
+            public boolean onLongClick(View v) {
+
+                //Toast.makeText(this, "Hello 123", 2000);
+                titre.setText("marche");
+                return false;
+            }
+        });*/
 
         //titre.setText(dataManager.getTextFromStorage());
 
     }
 
-    // --------------------
-
-// ACTIONS
-
-// --------------------
-
- /*   private void save(String data){
-
-            this.writeOnInternalStorage(data);
-
+    @Override
+    public void handleDialogClose(DialogInterface dialog){
+        tafList = dataManager.getJsonData();
+        //Collections.reverse(tafList);
+        tafAdapter.setTafs(tafList);
+        tafAdapter.notifyDataSetChanged();
     }
 
-// ----------------------------------
 
-// UTILS - STORAGE
-
-// ----------------------------------
-
-    private String readFromStorage(){
-
-
-
-// 2 - Read from internal storage
-
-// INTERNAL
-
-            File directory;
-
-// Cache
-
-                //directory = getCacheDir();
-
-
-// Normal
-
-                directory = getFilesDir();
-
-
-            return JsonDataMaker.getTextFromStorage(directory, this, FILENAME, FOLDERNAME);
-
-
-
-    }
-
-// 1 - Write on internal storage
-
-    private void writeOnInternalStorage(String data) {
-
-        File directory;
-
-
-            //directory = getCacheDir();
-
-
-
-            directory = getFilesDir();
-
-
-        JsonDataMaker.setTextInStorage(directory, this, FILENAME, FOLDERNAME, data);
-
-    }*/
 
 }
